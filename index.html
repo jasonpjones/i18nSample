@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Localization Sample</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/loco.js"></script>
+    <script src="scripts/strings.js"></script>
+    <script src="scripts/foo_strings.js"></script>
+    <script src="scripts/fruit_strings.js"></script>
+</head>
+<body>
+    <h1 class="loc_text" data-loc-cat="Foo" data-loc-key="Headings.HeadingOne">_heading1_</h1>
+    <span class="loc_text" data-loc-cat="Foo" data-loc-key="Foo">_foo_</span>&nbsp<span class="loc_text" data-loc-cat="Foo" data-loc-key="Bar">_bar_</span><br />
+    <span>The doctor says to eat an <span  class="loc_text" data-loc-cat="Fruit" data-loc-key="Banana">_apple_</span> a day</span><br />
+    <span id="fmt_str">_replace_with_format_string_</span>
+
+</body>
+
+    <script>
+        
+        var app,
+            doLoc = false;
+
+        $(function () {
+            if (!doLoc) {
+                return;
+            }
+
+            app = new LocDemo.App();
+            app.init(); //calls loco.localize which automatically localizes anything with 'loc_text' className
+
+            app.loco.localizeFormatted($('#fmt_str'), 'Foo', 'FooBar', ['1', '2', '3']);
+        });
+    </script>
+</html>
